@@ -1,4 +1,4 @@
-# Kaminari
+# Lightning
 
 This is an ESP8266 and AS3935 based Franklin Lightning Detector. It connects to a WiFi network, and offers a JSON web service for detected lightnings.
 
@@ -43,11 +43,11 @@ To fully understand the functionality of the lightning detector, please read the
 
 ### Important Notes
 
-- The ESP8266's WiFi is disturbing the AS3935 detector, and reducing the quality of lightning detection up to a point where lightnings cannot be detected at all. **Make sure there is sufficient space between both boards!** There should be at least 10 cm between the WiFi antenna and the detector coil. The more space, the better.
+- The ESP8266's WiFi is disturbing the AS3935 detector, and reducing the quality of lightning detection up to a point where lightning cannot be detected at all. **Make sure there is sufficient space between both boards!** There should be at least 10 cm between the WiFi antenna and the detector coil. The more space, the better.
 
 * Some manufacturers of the lightning detector print a calibration value on the package. As Kaminari calibrates the detector automatically, the calibration value is not needed.
 
-* Some AS3935 boards are equipped with non-standard parts in the antenna RC, and thus cannot be tuned to the recommended frequency of 500 kHz. If you're lucky, it is still within the required tolerance of ±3.5%. Those boards can be used, but may give inferior results. It is not a fault of Kaminari if the exact frequency is missed. (I got multiple reports about CJMCU boards having this issue, and can confirm it with my own board of this brand.)
+* Some AS3935 boards are equipped with non-standard parts in the antenna RC, and thus cannot be tuned to the recommended frequency of 500 kHz. If you're lucky, it is still within the required tolerance of ±3.5%. Those boards can be used, but may give inferior results. 
 
 ### Firmware
 
@@ -65,12 +65,12 @@ Please make sure these libraries are installed in the Library Manager of the Ard
 
 ### Configuration
 
-Before you build the project for the first time, please copy the `myWiFi.h.example` file to `myWiFi.h`, and adapt it to your needs:
+Before you build the project for the first time, please copy the `myWiFi.h` file and adapt it to your needs:
 
 - `MY_SSID`: The SSID of your WLAN to connect to
 - `MY_PSK`: The password of your WLAN
 - `MY_APIKEY`: Your API key for endpoint calls that change the state of the detector. You can set a random, password-like word here.
-- `MY_MDNS_NAME`: Your preferred mDNS name. Just use the default value `kaminari` if you don't know what to use here.
+- `MY_MDNS_NAME`: Your preferred mDNS name. Just use the default value `shrunklightning` if you don't know what to use here.
 
 To send lightning events via MQTT, these additional options need to be configured:
 
@@ -156,7 +156,7 @@ Returns the current settings of the detector as JSON structure, for example:
 - `noiseFloorLevel`: Current noise floor level, in µVrms.
 - `outdoorMode`: `true` if the detector is switched to outdoor mode. In outdoor mode, a higher noise floor level voltage is used for suppressing disturbers. If the LED is blinking blue, you can try to enable the outdoor mode to make the device less sensitive for disturbers.
 - `watchdogThreshold`: Current watchdog threshold, see AS3935 datasheet.
-- `minimumNumberOfLightning`: Minimum number of lightnings until a lightning detected event is triggered.
+- `minimumNumberOfLightning`: Minimum number of lightning events until a lightning detected event is triggered.
 - `spikeRejection`: Current spike rejection, see AS3935 datasheet.
 - `statusLed`: If `true`, the status LED displays signal quality and detected lightnings. If `false`, the status LED will only display important system states (WLAN disconnected, calibration in progress) and is turned off otherwise.
 - `blueBrightness`: Maximum brightness of the blue LED indicating the noise floor level.
