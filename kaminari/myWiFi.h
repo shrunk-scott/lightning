@@ -16,16 +16,16 @@
  */
 
 // The name of your WLAN
-#define MY_SSID "HomeSweetHome"
+#define MY_SSID "Shrunk"
 
 // Your WLAN's password
-#define MY_PSK "mYsEcReTpAsSwOrD"
+#define MY_PSK "Spartan08!"
 
 // A random API key to protect your lightning detector from unauthorized access
-#define MY_APIKEY "mYsEcReTaPiKeY"
+#define MY_APIKEY "Spartan08!"
 
 // The MDNS name of your detector
-#define MY_MDNS_NAME "kaminari"
+#define MY_MDNS_NAME "shrunklightning"
 
 // ---- MQTT ----------------------------------------------
 // Uncomment the next line to enable MQTT
